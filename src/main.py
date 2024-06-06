@@ -49,3 +49,17 @@ elif unos == "3":
     lines = [book1.display_info() + '\n' if book.display_info() in line else line for line in lines]
     with open("fajl.txt", "w") as file:
         file.writelines(lines)
+
+elif unos == "4":
+    print("Napisi informacije o knjizi koju zelite da izbrisete.")
+    naziv = input("Naziv: ")
+    autor = input("Autor: ")
+    god_izdanja = input("Godina izdanja: ")
+    zanr = input("Zanr: ")
+    book = Book(naziv, autor, god_izdanja, zanr)
+    with open("fajl.txt", "r") as file:
+        lines = file.readlines()
+    with open("fajl.txt", "w") as file:
+        for line in lines:
+            if line.strip() != book.display_info().strip():
+                file.write(line)

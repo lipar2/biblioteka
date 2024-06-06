@@ -20,3 +20,10 @@ class Test_Book(unittest.TestCase):
     def test_dodavanje_zanra(self):
         b = Book("Na Drini cuprija", "Ivo Andric", 1954, "Roman")
         self.assertEqual(b.zanr, "Roman")
+
+    def test_displayinfo(self):
+        b = Book("d", "d", 1954, "d")
+        self.assertEqual(b.display_info(), "d, d, 1954, d")
+
+if __name__ == '__main__':
+   unittest.main()
