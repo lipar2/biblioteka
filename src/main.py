@@ -19,3 +19,11 @@ if unos =="1":
     with open("fajl.txt", "a") as file:
         for object in library.lista_objekata:
             file.write(object.display_info() + "\n")
+
+elif unos == "2":
+    kriterjum = input("Po cemu zelite da pretrazujete knjige: ")
+    key_word = input("Kljucna rec za pretragu: ")
+    results = library.search_books(kriterjum, key_word)
+    print("Rezultati pretrage: ")
+    for result in results:
+        print(result)
