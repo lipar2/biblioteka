@@ -10,18 +10,18 @@ class Test_Libary(unittest.TestCase):
     def test_cuvanje_knjige(self):
         b = Book("dd", "dd", 167, "dd")
         b2 = Book("dd", "dd", 167, "dd")
-        l = Library()
-        l.dodaj_knjigu(b)
-        l.dodaj_knjigu(b2)
-        self.assertEqual(len(l.lista_objekata), 2)
+        golf = Library()
+        golf.dodaj_knjigu(b)
+        golf.dodaj_knjigu(b2)
+        self.assertEqual(len(golf.lista_objekata), 2)
 
     def test_ispis_knjiga(self):
        b = Book("dd", "dd", 167, "dd")
-       l = Library()
-       l.dodaj_knjigu(b)
+       golf = Library()
+       golf.dodaj_knjigu(b)
        capture_output = StringIO()
        sys.stdout = capture_output
-       l.ispis_knjiga()
+       golf.ispis_knjiga()
        sys.stdout = sys.__stdout__
        self.assertEqual(capture_output.getvalue().strip(), "dd, dd, 167, dd")
    

@@ -5,5 +5,5 @@ class Book:
         self.god_izdanja = god_izdanja
         self.zanr = zanr
           
-def display_info(self):
+    def display_info(self):
         return f'{self.naziv}, {self.autor}, {self.god_izdanja}, {self.zanr}'

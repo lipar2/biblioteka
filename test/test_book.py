@@ -6,24 +6,24 @@ from book import Book
 
 class Test_Book(unittest.TestCase):
     def test_dodavanje_naslova(self):
-        b = Book("Na Drini cuprija", " ", 1954, " ")
-        self.assertEqual(b.naziv, "Na Drini cuprija")
+        sarmin = Book("Drugi svetski rat", " ", 1939, " ")
+        self.assertEqual(sarmin.naziv, "Drugi svetski rat")
 
     def test_dodavanje_autora(self):
-        b = Book("Na Drini cuprija", "Ivo Andric", 1954, " ")
-        self.assertEqual(b.autor, "Ivo Andric")
+        knj = Book("Mali Princ", "Ivo Andric", 1233, " ")
+        self.assertEqual(knj.autor, "Ivo Andric")
     
     def test_dodavanje_godine_izdanja(self):
-        b = Book("Na Drini cuprija", "Ivo Andric", 1954, " ")
-        self.assertEqual(b.god_izdanja, 1954)
+        knji = Book("Istorija Srba", "Ivo Andric", 1759, " ")
+        self.assertEqual(knji.god_izdanja, 1759)
 
     def test_dodavanje_zanra(self):
-        b = Book("Na Drini cuprija", "Ivo Andric", 1954, "Roman")
-        self.assertEqual(b.zanr, "Roman")
+        knjig = Book("Jedna zelja jedna Nada", "Dusan Dzakic", 1152, "Roman")
+        self.assertEqual(knjig.zanr, "Roman")
 
     def test_displayinfo(self):
-        b = Book("d", "d", 1954, "d")
-        self.assertEqual(b.display_info(), "d, d, 1954, d")
+        knjiga = Book("d", "d", 1954, "d")
+        self.assertEqual(knjiga.display_info(), "d, d, 1954, d")
 
 if __name__ == '__main__':
    unittest.main()
