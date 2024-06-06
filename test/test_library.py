@@ -14,3 +14,14 @@ class Test_Libary(unittest.TestCase):
         l.dodaj_knjigu(b)
         l.dodaj_knjigu(b2)
         self.assertEqual(len(l.lista_objekata), 2)
+
+    def test_ispis_knjiga(self):
+       b = Book("dd", "dd", 167, "dd")
+       l = Libary()
+       l.dodaj_knjigu(b)
+       capture_output = StringIO()
+       sys.stdout = capture_output
+       l.ispis_knjiga()
+       sys.stdout = sys.__stdout__
+       self.assertEqual(capture_output.getvalue().strip(), "dd, dd, 167, dd")
+    
