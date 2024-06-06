@@ -46,7 +46,7 @@ elif unos == "3":
     with open("fajl.txt", "r") as file:
         lines = file.readlines()
     
-    lines = [knjiga1.display_info() + '\n' if book.display_info() in line else line for line in lines]
+    lines = [knjiga1.display_info() + '\n' if knjiga.display_info() in line else line for line in lines]
     with open("fajl.txt", "w") as file:
         file.writelines(lines)
 
