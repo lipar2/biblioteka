@@ -1,65 +1,75 @@
 from library import Library
 from book import Book
-library = Library()
 
-unos = input("Sta zelite da radite? (1-Za dodavanje knjige, 2-Za pretrazivanje knjige, 3-Za menjanje informacija o knjigama, 4-Za prikaz svih knjiga): ")
-if unos =="1":
+def dodaj_knjigu(library):
     while True:
-        print("Napisi informacije o knjizi.")
+        print("Unesite informacije o knjizi.")
         naziv = input("Naziv: ")
         autor = input("Autor: ")
         god_izdanja = input("Godina izdanja: ")
         zanr = input("Zanr: ")
         knjiga = Book(naziv, autor, god_izdanja, zanr)
         library.dodaj_knjigu(knjiga)
-        prekid = input("za prekid stisni start")
+        prekid = input("Za prekid unesite 'start': ")
         if prekid == "start":
             break
-    
-    with open("fajl.txt", "a") as file:
-        for object in library.lista_objekata:
-            file.write(object.display_info() + "\n")
 
-elif unos == "2":
-    kriterijum = input("Po cemu zelite da pretrazujete: ")
-    key_word = input("Kljucna rec za pretragu: ")
+    with open("fajl.txt", "a") as file:
+        for book in library.lista_objekata:
+            file.write(book.display_info() + "\n")
+
+def pretrazi_knjige(library):
+    kriterijum = input("Po čemu želite da pretražujete: ")
+    key_word = input("Ključna reč za pretragu: ")
     results = library.search_books(kriterijum, key_word)
     print("Rezultati pretrage: ")
     for result in results:
         print(result)
 
-elif unos == "3":
-    print("Napisi informacije o knjizi koju zelite da izmenite.")
+def izmeni_knjigu(library):
+    print("Unesite informacije o knjizi koju želite da izmenite.")
+    stari_naziv = input("Stari naziv: ")
+
+    print("Unesite nove informacije o knjizi.")
+    novi_naziv = input("Novi naziv: ")
+    novi_autor = input("Novi autor: ")
+    nova_god_izdanja = input("Nova godina izdanja: ")
+    novi_zanr = input("Novi zanr: ")
+
+    library.izmeni_knjigu(stari_naziv, novi_naziv, novi_autor, nova_god_izdanja, novi_zanr)
+
+def prikazi_knjige(library):
+    print("Sve knjige u biblioteci:")
+    library.ispis_knjiga()
+
+def obrisi_knjigu(library):
+    print("Unesite informacije o knjizi koju želite da izbrišete.")
     naziv = input("Naziv: ")
-    autor = input("Autor: ")
-    god_izdanja = input("Godina izdanja: ")
-    zanr = input("Zanr: ")
-    knjiga = Book(naziv, autor, god_izdanja, zanr)
+    library.obrisi_knjigu(naziv)
 
-    print("Napisi informacije o izmenjenoj knjizi.")
-    naziv1 = input("Naziv: ")
-    autor1 = input("Autor: ")
-    god_izdanja1 = input("Godina izdanja: ")
-    zanr1 = input("Zanr: ")
-    knjiga1 = Book(naziv1, autor1, god_izdanja1, zanr1)
+def izlaz(library):
+    print("Izlaz iz programa.")
+    exit()
 
-    with open("fajl.txt", "r") as file:
-        lines = file.readlines()
-    
-    lines = [knjiga1.display_info() + '\n' if knjiga.display_info() in line else line for line in lines]
-    with open("fajl.txt", "w") as file:
-        file.writelines(lines)
+def main():
+    library = Library()
 
-elif unos == "4":
-    print("Napisi informacije o knjizi koju zelite da izbrisete.")
-    naziv = input("Naziv: ")
-    autor = input("Autor: ")
-    god_izdanja = input("Godina izdanja: ")
-    zanr = input("Zanr: ")
-    knjiga = Book(naziv, autor, god_izdanja, zanr)
-    with open("fajl.txt", "r") as file:
-        lines = file.readlines()
-    with open("fajl.txt", "w") as file:
-        for line in lines:
-            if line.strip() != knjiga.display_info().strip():
-                file.write(line)
+    opcije = {
+        "1": dodaj_knjigu,
+        "2": pretrazi_knjige,
+        "3": izmeni_knjigu,
+        "4": prikazi_knjige,
+        "5": obrisi_knjigu,
+        "0": izlaz
+    }
+
+    while True:
+        unos = input("Šta želite da radite? (1-Dodaj knjigu, 2-Pretraži knjige, 3-Izmeni knjigu, 4-Prikaži sve knjige, 5-Izbriši knjigu, 0-Izlaz): ")
+        opcija = opcije.get(unos)
+        if opcija:
+            opcija(library)
+        else:
+            print("Pogrešan unos, pokušajte ponovo.")
+
+if __name__ == "__main__":
+    main()

@@ -4,26 +4,29 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 from book import Book
 
-class Test_Book(unittest.TestCase):
+class TestBook(unittest.TestCase):
+
+    def setUp(self):
+        self.book1 = Book("Drugi svetski rat", "Culibrk Dragan", 1939, "tragedija")
+        self.book2 = Book("Mali Princ", "Ivo Andric", 1233, "komedija")
+        self.book3 = Book("Istorija Srba", "Antoan de Sent Egziper", 1759, "horor")
+        self.book4 = Book("Jedna želja jedna nada", "Dušan Džakić", 1152, "Roman")
+        self.book5 = Book("d", "d", 1954, "d")
+
     def test_dodavanje_naslova(self):
-        sarmin = Book("Drugi svetski rat", " ", 1939, " ")
-        self.assertEqual(sarmin.naziv, "Drugi svetski rat")
+        self.assertEqual(self.book1.naziv, "Drugi svetski rat")
 
     def test_dodavanje_autora(self):
-        knj = Book("Mali Princ", "Ivo Andric", 1233, " ")
-        self.assertEqual(knj.autor, "Ivo Andric")
-    
+        self.assertEqual(self.book2.autor, "Ivo Andric")
+
     def test_dodavanje_godine_izdanja(self):
-        knji = Book("Istorija Srba", "Ivo Andric", 1759, " ")
-        self.assertEqual(knji.god_izdanja, 1759)
+        self.assertEqual(self.book3.god_izdanja, 1759)
 
     def test_dodavanje_zanra(self):
-        knjig = Book("Jedna zelja jedna Nada", "Dusan Dzakic", 1152, "Roman")
-        self.assertEqual(knjig.zanr, "Roman")
+        self.assertEqual(self.book4.zanr, "Roman")
 
-    def test_displayinfo(self):
-        knjiga = Book("d", "d", 1954, "d")
-        self.assertEqual(knjiga.display_info(), "d, d, 1954, d")
+    def test_display_info(self):
+        self.assertEqual(self.book5.display_info(), "d, d, 1954, d")
 
 if __name__ == '__main__':
-   unittest.main()
+    unittest.main()
